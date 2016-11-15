@@ -35,7 +35,10 @@ public class NewTaskServlet extends HttpServlet{
             }
         }
         session.setAttribute("counter", counter);
-        session.setAttribute(counter + "",  new Task(counter + "", req.getParameter("n_task")));
+
+        Task task = new Task(counter + "", req.getParameter("n_task"));
+        task.setDetails(req.getParameter("details"));
+        session.setAttribute(counter + "",  task);
         resp.sendRedirect("/home");
     }
 

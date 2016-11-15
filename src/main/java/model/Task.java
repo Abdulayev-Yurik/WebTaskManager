@@ -11,7 +11,7 @@ public class Task {
     private String taskId;
     private String taskTitle;
     private String details;
-    private List<Task> messages = new ArrayList<>();
+    private List<String> messages = new ArrayList<>();
 
     public Task(String taskId, String taskTitle) {
         this.taskId = taskId;
@@ -26,11 +26,11 @@ public class Task {
         this.taskTitle = taskTitle;
     }
 
-    public void addMessage(Task task){
-        messages.add(task);
+    public void addMessage(String message){
+        messages.add(message);
     }
 
-    public List<Task> getMessages(){
+    public List<String> getMessages(){
         return messages;
     }
 

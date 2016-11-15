@@ -14,8 +14,9 @@
     <tr>
         <td>Task title: ${task.taskTitle}</td>
     </tr>
-    <tr></tr>
-    <tr></tr>
+    <tr>
+        <td>Task details: ${task.details}</td>
+    </tr>
     <c:forEach items="${task.messages}" var="message">
         <tr>
             <td>

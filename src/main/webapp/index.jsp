@@ -7,15 +7,23 @@
 <body>
 <input type="submit" value="Add Task" onclick="window.location='jsp/add_task.jsp'"><br>
 <table>
-    <c:forEach items="${taskList}" var="message">
+    <tr></tr>
+    <tr></tr>
+    <tr><h2>Active Tasks</h2></tr>
+    <c:forEach items="${taskList}" var="task">
         <tr>
             <td>
-                    ${message.taskTitle}
+                    ${task.taskTitle}
             </td>
             <td>
-                <a href="/details?task=${message.taskId}">
+                <a href="/details?task=${task.taskId}">
                 <i class="material-icons" style="color: green; font-size:14px">announcement</i>
-                ${message.messagesValues}</a>
+                ${task.messagesValues}</a>
+            </td>
+            <td>
+                <a href="/delete?task=${task.taskId}">
+                    <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
+                        </a>
             </td>
         </tr>
     </c:forEach>
