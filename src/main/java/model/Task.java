@@ -11,11 +11,13 @@ public class Task {
     private String taskId;
     private String taskTitle;
     private String details;
+    private boolean isActive;
     private List<String> messages = new ArrayList<>();
 
     public Task(String taskId, String taskTitle) {
         this.taskId = taskId;
         this.taskTitle = taskTitle;
+        isActive = true;
     }
 
     public String getTaskTitle() {
@@ -48,5 +50,13 @@ public class Task {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

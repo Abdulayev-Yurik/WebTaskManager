@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+<a href="/home">Back</a>
 <form action="/messages">
     <input type="hidden" name="taskId" value="${task.taskId}">
     <input type="text" placeholder="Enter new message" name="n_message" required>
@@ -14,9 +15,11 @@
     <tr>
         <td>Task title: ${task.taskTitle}</td>
     </tr>
-    <tr>
-        <td>Task details: ${task.details}</td>
-    </tr>
+    <c:if test="${!task.details.isEmpty()}">
+        <tr>
+            <td>Task details: ${task.details}</td>
+        </tr>
+    </c:if>
     <c:if test="${task.messages.size() != 0}">
         <tr>
             <td>Task messages:</td>
