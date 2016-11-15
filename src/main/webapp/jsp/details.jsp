@@ -30,7 +30,7 @@
                         ${message}
                 </td>
                 <td>
-                    <a href="/messages?task=${message}">
+                    <a href="/delMessages?message=${message}&taskId=${task.taskId}">
                         <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
                     </a>
                 </td>

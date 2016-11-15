@@ -25,7 +25,8 @@ public class HomePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession(true);
-        List<Task> taskList = new ArrayList<>();
+        List<Task> taskActiveList = new ArrayList<>();
+        List<Task> taskDoneList = new ArrayList<>();
 
         if (session.isNew())
             System.out.println("Home servlet session not exist");
@@ -36,7 +37,11 @@ public class HomePageServlet extends HttpServlet {
                 try {
                     Task task = (Task) session.getAttribute(i + "");
                     if (!task.getTaskTitle().isEmpty()){
-                        taskList.add(task);
+                        if (task.getActive()){
+                            taskActiveList.add(task);
+                        }else {
+                            taskDoneList.add(task);
+                        }
                         System.out.println(task.getTaskTitle());
                     }
                 }catch (NullPointerException e){
@@ -45,7 +50,8 @@ public class HomePageServlet extends HttpServlet {
             }
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-        req.setAttribute("taskList", taskList);
+        req.setAttribute("taskActiveList", taskActiveList);
+        req.setAttribute("taskDoneList", taskDoneList);
         dispatcher.forward(req, resp);
     }
 }
