@@ -23,6 +23,7 @@ public class Main {
         File webContentFolder = new File("src/main/webapp/");
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", webContentFolder.getAbsolutePath());
         ctx.setParentClassLoader(Main.class.getClassLoader());
+
         ErrorPage page = new ErrorPage();
         page.setErrorCode(404);
         page.setLocation("/index.jsp");

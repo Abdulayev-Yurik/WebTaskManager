@@ -3,8 +3,9 @@
     <link rel="stylesheet" href="../css/mystyle.css">
 </head>
 <body>
-<form action="/">
-    <input type="text" placeholder="Add your task" required>
+<a href="/">Back</a>
+<form action="/newTask">
+    <input type="text" name="n_task" placeholder="Add your task" required>
     <input type="submit" value="Add Task"><br>
 </form>
 
