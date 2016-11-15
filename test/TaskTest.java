@@ -13,7 +13,7 @@ public class TaskTest {
     public void assertActiveTask(){
         Task expectedTask = new Task("1", "test task");
         Task task = new Task("1", "expected task");
-        assertThat(expectedTask.getActive(), is(task.getActive()));
+        assertThat(expectedTask.isActive(), is(task.isActive()));
     }
 
 

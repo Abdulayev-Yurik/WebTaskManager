@@ -26,7 +26,7 @@ public class TaskStateServlet extends HttpServlet {
             resp.sendRedirect("/home");
         }else {
             Task task = (Task) session.getAttribute(taskId);
-            task.setActive(!task.getActive());
+            task.setActive(!task.isActive());
             resp.sendRedirect("/home");
         }
 

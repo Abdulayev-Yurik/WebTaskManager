@@ -52,7 +52,7 @@ public class Task {
         this.details = details;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return isActive;
     }
 

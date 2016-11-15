@@ -38,7 +38,7 @@ public class HomePageServlet extends HttpServlet {
                     try {
                         Task task = (Task) session.getAttribute(i + "");
                         if (!task.getTaskTitle().isEmpty()) {
-                            if (task.getActive()) {
+                            if (task.isActive()) {
                                 taskActiveList.add(task);
                             } else {
                                 taskDoneList.add(task);
