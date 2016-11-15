@@ -1,8 +1,6 @@
 package controller;
 
 import model.Task;
-import org.apache.catalina.Session;
-import org.apache.catalina.connector.Request;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,11 +33,14 @@ public class HomePageServlet extends HttpServlet {
             int listLength = (Integer) session.getAttribute(counterKey);
             System.out.println("Home servlet session exist, listLength = " + listLength);
             for (int i = 1; i <= listLength; i++) {
-                Task task = (Task) session.getAttribute(i + "");
-                taskList.add(task);
-                System.out.println(task.getTaskTitle());
-            }
+                try {
+                    Task task = (Task) session.getAttribute(i + "");
+                    taskList.add(task);
+                    System.out.println(task.getTaskTitle());
+                }catch (NullPointerException e){
 
+                }
+            }
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
         req.setAttribute("taskList", taskList);
