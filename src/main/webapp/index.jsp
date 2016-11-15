@@ -7,16 +7,15 @@
 <body>
 <input type="submit" value="Add Task" onclick="window.location='jsp/add_task.jsp'"><br>
 <table>
-    <jsp:useBean id="taskList" scope="request" type="java.util.List<model.Task>"/>
-    <c:forEach items="${taskList}" var="item">
+    <c:forEach items="${taskList}" var="message">
         <tr>
             <td>
-                    ${item.taskTitle}
+                    ${message.taskTitle}
             </td>
             <td>
-                <a href="/messages?task=${item.taskId}">
+                <a href="/details?task=${message.taskId}">
                 <i class="material-icons" style="color: green; font-size:14px">announcement</i>
-                ${item.messagesValues}</a>
+                ${message.messagesValues}</a>
             </td>
         </tr>
     </c:forEach>
