@@ -31,22 +31,26 @@ public class HomePageServlet extends HttpServlet {
         if (session.isNew())
             System.out.println("Home servlet session not exist");
         else {
-            int listLength = (Integer) session.getAttribute(counterKey);
-            System.out.println("Home servlet session exist, listLength = " + listLength);
-            for (int i = 1; i <= listLength; i++) {
-                try {
-                    Task task = (Task) session.getAttribute(i + "");
-                    if (!task.getTaskTitle().isEmpty()){
-                        if (task.getActive()){
-                            taskActiveList.add(task);
-                        }else {
-                            taskDoneList.add(task);
+            try {
+                int listLength = (Integer) session.getAttribute(counterKey);
+                System.out.println("Home servlet session exist, listLength = " + listLength);
+                for (int i = 1; i <= listLength; i++) {
+                    try {
+                        Task task = (Task) session.getAttribute(i + "");
+                        if (!task.getTaskTitle().isEmpty()) {
+                            if (task.getActive()) {
+                                taskActiveList.add(task);
+                            } else {
+                                taskDoneList.add(task);
+                            }
+                            System.out.println(task.getTaskTitle());
                         }
-                        System.out.println(task.getTaskTitle());
-                    }
-                }catch (NullPointerException e){
+                    } catch (NullPointerException e) {
 
+                    }
                 }
+            }catch (NullPointerException e){
+
             }
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
