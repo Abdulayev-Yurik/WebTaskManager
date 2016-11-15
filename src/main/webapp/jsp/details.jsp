@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="/messages">
-    <input type="hidden" name="task" value="${task.taskId}">
+    <input type="hidden" name="taskId" value="${task.taskId}">
     <input type="text" placeholder="Enter new message" name="n_message" required>
     <input type="submit" value="Add message">
 </form>
@@ -17,18 +17,23 @@
     <tr>
         <td>Task details: ${task.details}</td>
     </tr>
-    <c:forEach items="${task.messages}" var="message">
+    <c:if test="${task.messages.size() != 0}">
         <tr>
-            <td>
-                    ${message.taskTitle}
-            </td>
-            <td>
-                <a href="/messages?task=${message.taskId}">
-                    <i class="material-icons" style="color: green; font-size:14px">announcement</i>
-                        ${message.messagesValues}</a>
-            </td>
+            <td>Task messages:</td>
         </tr>
-    </c:forEach>
+        <c:forEach items="${task.messages}" var="message">
+            <tr>
+                <td>
+                        ${message}
+                </td>
+                <td>
+                    <a href="/messages?task=${message}">
+                        <i class="material-icons" style="color: red; font-size:20px">delete_forever</i>
+                    </a>
+                </td>
+            </tr>
+        </c:forEach>
+    </c:if>
 </table>
 </body>
 </html>
