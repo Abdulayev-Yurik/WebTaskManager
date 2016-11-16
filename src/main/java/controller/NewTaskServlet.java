@@ -1,5 +1,6 @@
 package controller;
 
+import dao.TaskDAO;
 import model.Task;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by yurik on 14.11.16.
@@ -18,27 +20,12 @@ public class NewTaskServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-
-        String counterKey = "counter";
-        int counter = 1;
-
-        if (session.isNew()){
-            System.out.println("Task servlet session not exist");
-            session.setAttribute(counterKey, counter);
-        } else {
-            System.out.println("Task servlet session exist");
-            try {
-                counter = (Integer)session.getAttribute(counterKey) + 1;
-            }catch (NullPointerException e){
-                session.setAttribute(counterKey, 1);
-            }
+        try {
+            TaskDAO dao = new TaskDAO();
+            dao.addNewTask(req.getParameter("title"), req.getParameter("details"));
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        session.setAttribute("counter", counter);
-
-        Task task = new Task(counter + "", req.getParameter("n_task"));
-        task.setDetails(req.getParameter("details"));
-        session.setAttribute(counter + "",  task);
         resp.sendRedirect("/home");
     }
 

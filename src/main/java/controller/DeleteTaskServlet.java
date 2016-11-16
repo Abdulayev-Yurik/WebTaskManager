@@ -1,5 +1,7 @@
 package controller;
 
+import dao.TaskDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by employee on 11/15/16.
@@ -16,10 +19,11 @@ public class DeleteTaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-        if (session.isNew()){
-        }else {
-            session.removeAttribute(req.getParameter("task"));
+        try {
+            TaskDAO taskDAO = new TaskDAO();
+            taskDAO.deleteTask(req.getParameter("task"));
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
         resp.sendRedirect("/home");
     }
