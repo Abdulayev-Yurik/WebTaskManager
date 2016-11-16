@@ -45,8 +45,9 @@ public class TaskDAO {
         connection.close();
     }
 
-    public void deleteTask(String id) throws SQLException {
-        statement.execute("DELETE FROM task_manager_db.task_table WHERE id =" + id);
+    public void deleteTask(String taskId) throws SQLException {
+        statement.execute("DELETE FROM task_manager_db.task_table WHERE id =" + taskId);
+        statement.execute("DELETE FROM task_manager_db.messages WHERE taskId=" + taskId);
         connection.close();
     }
 
