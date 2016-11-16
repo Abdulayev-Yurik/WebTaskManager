@@ -46,7 +46,6 @@ public class HomePageServlet extends HttpServlet {
                             System.out.println(task.getTaskTitle());
                         }
                     } catch (NullPointerException e) {
-
                     }
                 }
             }catch (NullPointerException e){

@@ -15,7 +15,7 @@ a{
 }
 
 td {
-    padding: 20px;
+    padding: 10px;
 }
 
 input, textarea {
@@ -34,17 +34,23 @@ input[type=submit] {
 }
 
 .activeList {
-    border: 1px solid darkgray;
+    border: 0 solid darkgray;
     border-radius: 10px;
     width: 47%;
     float: left;
+    background-color: lightgreen;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .doneList {
-    border: 1px solid darkgray;
+    border: 0 solid darkgray;
     border-radius: 10px;
     width: 47%;
     float: right;
+    background-color: lightskyblue;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .page {

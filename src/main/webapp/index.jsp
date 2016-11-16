@@ -22,7 +22,7 @@
                         <c:if test="${task.active}">
                             <td title="close task">
                                 <a href="/taskState?task=${task.taskId}">
-                                    <i class="material-icons" style="font-size:20px; color: greenyellow">done_all</i>
+                                    <i class="material-icons" style="font-size:20px; color: orange">done_all</i>
                                 </a>
                             </td>
                         </c:if>
@@ -56,7 +56,7 @@
                             <td title="reopen task">
                                 <a href="/taskState?task=${task.taskId}">
                                     <i class="material-icons"
-                                       style="font-size:20px; color: greenyellow">add_to_queue</i>
+                                       style="font-size:20px; color: orange">add_to_queue</i>
                                 </a>
                             </td>
                         </c:if>
