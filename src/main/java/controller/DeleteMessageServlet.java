@@ -31,7 +31,5 @@ public class DeleteMessageServlet extends HttpServlet {
             e.printStackTrace();
         }
         resp.sendRedirect("/details?task=" + taskId);
-
-
     }
 }
