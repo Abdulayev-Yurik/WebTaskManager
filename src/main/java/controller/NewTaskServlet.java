@@ -32,7 +32,8 @@ public class NewTaskServlet extends HttpServlet {
                 dispatcher.forward(req, resp);
             }else {
                 TaskDAO dao = new TaskDAO();
-                dao.addNewTask(title, req.getParameter("details"), parseInt(req.getParameter("listId")));
+                dao.addNewTask(title, req.getParameter("details"),
+                        parseInt(req.getParameter("listId")), req.getParameter("dueDate"));
                 resp.sendRedirect("/home");
             }
         } catch (SQLException | ClassNotFoundException e) {

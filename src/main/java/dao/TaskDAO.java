@@ -53,9 +53,9 @@ public class TaskDAO {
     }
 
 
-    public void addNewTask(String title, String details, int listId) throws SQLException {
-        statement.execute("INSERT INTO task_manager_db.task_table (title, details, listId) VALUES ('" +
-                title + "','" + details + "','" + listId + "');");
+    public void addNewTask(String title, String details, int listId, String dueDate) throws SQLException {
+        statement.execute("INSERT INTO task_manager_db.task_table (title, details, listId, due_date) VALUES ('" +
+                title + "','" + details + "','" + listId + "', '" + dueDate + "');");
         connection.close();
     }
 
