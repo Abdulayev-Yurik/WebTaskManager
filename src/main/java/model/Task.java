@@ -12,6 +12,7 @@ public class Task {
     private String taskTitle;
     private String details;
     private boolean isActive;
+    private int listId;
     private List<Message> messages = new ArrayList<>();
 
 
@@ -26,6 +27,14 @@ public class Task {
         this.taskTitle = taskTitle;
         this.details = details;
         this.isActive = isActive;
+    }
+
+    public Task(String taskId, String taskTitle, String details, boolean isActive, int listId) {
+        this.taskId = taskId;
+        this.taskTitle = taskTitle;
+        this.details = details;
+        this.isActive = isActive;
+        this.listId = listId;
     }
 
     public String getTaskTitle() {
@@ -66,5 +75,13 @@ public class Task {
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public int getListId() {
+        return listId;
+    }
+
+    public void setListId(int listId) {
+        this.listId = listId;
     }
 }
