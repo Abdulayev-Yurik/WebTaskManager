@@ -1,5 +1,6 @@
 package dao;
 
+import model.ListTasks;
 import model.Message;
 import model.Task;
 
@@ -38,6 +39,19 @@ public class TaskDAO {
         connection.close();
         return taskList;
     }
+
+    public List<Task> getTasksFromList(String listId) throws SQLException {
+        List<Task> tasks = new ArrayList<>();
+        rs = statement.executeQuery("SELECT * FROM task_manager_db.task_table WHERE listId=" + listId);
+        while (rs.next()){
+            Task task = new Task(rs.getString("id"), rs.getString("title"),
+                    rs.getString("details"), rs.getBoolean("isActive"));
+            tasks.add(task);
+        }
+        connection.close();
+        return tasks;
+    }
+
 
     public void addNewTask(String title, String details) throws SQLException {
         statement.execute("INSERT INTO task_manager_db.task_table (title, details) VALUES ('" +
@@ -87,4 +101,14 @@ public class TaskDAO {
         statement.execute("DELETE FROM task_manager_db.messages WHERE id =" + messageId);
         connection.close();
     }
+
+    public void getAllListTasks() throws SQLException {
+        List<ListTasks> list = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM task_manager_db.list_tasks");
+        while (resultSet.next()){
+            ListTasks tasks = new ListTasks(resultSet.getInt("id"), resultSet.getString("name"));
+            list.add(tasks);
+        }
+    }
+
 }

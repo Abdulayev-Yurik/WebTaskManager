@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,12 +22,14 @@ public class HomePageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String listId = req.getParameter("listId");
         try {
             TaskDAO taskDAO = new TaskDAO();
             List<Task> taskActiveList = new ArrayList<>();
             List<Task> taskDoneList = new ArrayList<>();
 
-            for (Task task : taskDAO.getAllTasks()) {
+            List<Task> tasks = listId == null ? taskDAO.getAllTasks() : taskDAO.getTasksFromList(listId);
+            for (Task task : tasks) {
                 if (task.isActive()) {
                     taskActiveList.add(task);
                 } else {

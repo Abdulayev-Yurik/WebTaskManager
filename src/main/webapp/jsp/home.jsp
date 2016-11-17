@@ -7,6 +7,9 @@
 </head>
 <body>
 <div class="page">
+    <select onclick="window.location='/home?listId=1'">
+        <option >all tasks</option>
+    </select>
     <input type="submit" value="Add Task" onclick="window.location='jsp/add_task.jsp'"><br>
     <c:if test="${taskActiveList.size() != 0}">
         <div class="activeList card-1">
@@ -45,7 +48,7 @@
             <table>
                 <tr></tr>
                 <tr></tr>
-                <tr><h2>Done tasks</h2></tr>
+                <tr><h2>Done Tasks</h2></tr>
                 <c:forEach items="${taskDoneList}" var="task">
                     <tr>
                         <td>
