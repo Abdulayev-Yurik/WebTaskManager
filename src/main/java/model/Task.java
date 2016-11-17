@@ -1,14 +1,19 @@
 package model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by employee on 11/15/16.
  */
+@Entity
+@Table(name = "task_table")
 public class Task {
 
+    @Column(name = "id")@Id
     private String taskId;
+    private ListTasks listTasks;
     private String taskTitle;
     private String details;
     private String dueDate;
@@ -38,6 +43,17 @@ public class Task {
         this.listId = listId;
     }
 
+    public Task(String taskTitle, String details, boolean isActive, int listId) {
+        this.taskTitle = taskTitle;
+        this.details = details;
+        this.isActive = isActive;
+        this.listId = listId;
+    }
+
+    public Task() {
+    }
+
+    @Column(name = "title")
     public String getTaskTitle() {
         return taskTitle;
     }
@@ -46,14 +62,16 @@ public class Task {
         this.taskTitle = taskTitle;
     }
 
-    public Integer getMessagesValues(){
+    public Integer getMessagesValues() {
         return messages.size();
     }
 
+    @Column(name = "id")
     public String getTaskId() {
         return taskId;
     }
 
+    @Column(name = "details")
     public String getDetails() {
         return details;
     }
@@ -62,6 +80,7 @@ public class Task {
         this.details = details;
     }
 
+    @Column(name = "isActive")
     public boolean isActive() {
         return isActive;
     }
@@ -92,5 +111,15 @@ public class Task {
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "listId", nullable = false)
+    public ListTasks getListTasks() {
+        return listTasks;
+    }
+
+    public void setListTasks(ListTasks listTasks) {
+        this.listTasks = listTasks;
     }
 }
