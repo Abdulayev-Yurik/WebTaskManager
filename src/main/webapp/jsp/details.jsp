@@ -1,3 +1,4 @@
+<jsp:useBean id="task" scope="request" type="model.Task"/>
 <jsp:useBean id="messages" scope="request" type="java.util.List<model.Message>"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -19,6 +20,11 @@
     <c:if test="${!task.details.isEmpty()}">
         <tr>
             <td>Task details: ${task.details}</td>
+        </tr>
+    </c:if>
+    <c:if test="${!(task.dueDate == null)}">
+        <tr>
+            <td>Task dueDate: ${task.dueDate}</td>
         </tr>
     </c:if>
     <c:if test="${messages.size() != 0}">

@@ -75,6 +75,7 @@ public class TaskDAO {
         rs.next();
         Task task = new Task(rs.getString("id"), rs.getString("title"),
                 rs.getString("details"), rs.getBoolean("isActive"));
+        task.setDueDate(rs.getString("due_date"));
         task.setMessages(getTaskMessages(taskId));
         connection.close();
         return task;

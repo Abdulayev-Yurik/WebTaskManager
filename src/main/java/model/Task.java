@@ -11,6 +11,7 @@ public class Task {
     private String taskId;
     private String taskTitle;
     private String details;
+    private String dueDate;
     private boolean isActive;
     private int listId;
     private List<Message> messages = new ArrayList<>();
@@ -83,5 +84,13 @@ public class Task {
 
     public void setListId(int listId) {
         this.listId = listId;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 }
