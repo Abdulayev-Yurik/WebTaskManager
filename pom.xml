@@ -90,7 +90,7 @@
                 <assembleDirectory>target</assembleDirectory>
                 <programs>
                     <program>
-                        <mainClass>Main</mainClass>
+                        <mainClass>App</mainClass>
                         <name>webapp</name>
                     </program>
                 </programs>

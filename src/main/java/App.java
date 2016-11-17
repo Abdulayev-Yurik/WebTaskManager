@@ -11,7 +11,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class Main {
+public class App {
 
     public static void main(String[] args) throws Exception {
 
@@ -22,7 +22,7 @@ public class Main {
 
         File webContentFolder = new File("src/main/webapp/");
         StandardContext ctx = (StandardContext) tomcat.addWebapp("", webContentFolder.getAbsolutePath());
-        ctx.setParentClassLoader(Main.class.getClassLoader());
+        ctx.setParentClassLoader(App.class.getClassLoader());
 
         ErrorPage page = new ErrorPage();
         page.setErrorCode(404);
