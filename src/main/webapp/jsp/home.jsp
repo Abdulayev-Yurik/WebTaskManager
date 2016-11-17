@@ -1,3 +1,4 @@
+<jsp:useBean id="listTasks" scope="request" type="java.util.List<model.ListTasks>"/>
 <jsp:useBean id="taskActiveList" scope="request" type="java.util.List<model.Task>"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -7,10 +8,17 @@
 </head>
 <body>
 <div class="page">
-    <select onclick="window.location='/home?listId=1'">
-        <option >all tasks</option>
-    </select>
+
+    <form action="/home">
+        <select name="listId">
+            <c:forEach items="${listTasks}" var="list">
+                <option value="${list.id}">${list.listName}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" value="view list">
+    </form>
     <input type="submit" value="Add Task" onclick="window.location='jsp/add_task.jsp'"><br>
+    <input type="submit" value="Add List" onclick="window.location='jsp/add_new_list.jsp'"><br>
     <c:if test="${taskActiveList.size() != 0}">
         <div class="activeList card-1">
             <table>

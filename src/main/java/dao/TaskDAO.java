@@ -103,13 +103,4 @@ public class TaskDAO {
         connection.close();
     }
 
-    public void getAllListTasks() throws SQLException {
-        List<ListTasks> list = new ArrayList<>();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM task_manager_db.list_tasks");
-        while (resultSet.next()){
-            ListTasks tasks = new ListTasks(resultSet.getInt("id"), resultSet.getString("name"));
-            list.add(tasks);
-        }
-    }
-
 }

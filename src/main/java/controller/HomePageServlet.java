@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ListDAO;
 import dao.TaskDAO;
 import model.Task;
 
@@ -25,6 +26,7 @@ public class HomePageServlet extends HttpServlet {
         String listId = req.getParameter("listId");
         try {
             TaskDAO taskDAO = new TaskDAO();
+            ListDAO listDAO = new ListDAO();
             List<Task> taskActiveList = new ArrayList<>();
             List<Task> taskDoneList = new ArrayList<>();
 
@@ -40,6 +42,7 @@ public class HomePageServlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/home.jsp");
             req.setAttribute("taskActiveList", taskActiveList);
             req.setAttribute("taskDoneList", taskDoneList);
+            req.setAttribute("listTasks", listDAO.getAllListTasks());
             dispatcher.forward(req, resp);
         } catch (SQLException | ClassNotFoundException | NullPointerException e) {
             e.printStackTrace();
