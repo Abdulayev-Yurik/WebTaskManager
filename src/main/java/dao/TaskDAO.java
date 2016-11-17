@@ -16,15 +16,12 @@ import java.util.List;
  */
 public class TaskDAO {
 
-    private String dbUrl = "jdbc:mysql://localhost:3306/task_manager_db";
-    private String user = "root";
-    private String pass = "root";
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
 
-    public TaskDAO() throws SQLException, ClassNotFoundException {
-        connection = new DBConnectionManager(dbUrl, user, pass).getConnection();
+    public TaskDAO(Connection connection) throws SQLException, ClassNotFoundException {
+        this.connection = connection;
         statement = connection.createStatement();
     }
 
@@ -36,7 +33,6 @@ public class TaskDAO {
                     rs.getString("details"), rs.getBoolean("isActive"));
             taskList.add(task);
         }
-        connection.close();
         return taskList;
     }
 
@@ -48,7 +44,6 @@ public class TaskDAO {
                     rs.getString("details"), rs.getBoolean("isActive"));
             tasks.add(task);
         }
-        connection.close();
         return tasks;
     }
 
@@ -56,18 +51,15 @@ public class TaskDAO {
     public void addNewTask(String title, String details, int listId, String dueDate) throws SQLException {
         statement.execute("INSERT INTO task_manager_db.task_table (title, details, listId, due_date) VALUES ('" +
                 title + "','" + details + "','" + listId + "', '" + dueDate + "');");
-        connection.close();
     }
 
     public void deleteTask(String taskId) throws SQLException {
         statement.execute("DELETE FROM task_manager_db.task_table WHERE id =" + taskId);
         statement.execute("DELETE FROM task_manager_db.messages WHERE taskId=" + taskId);
-        connection.close();
     }
 
     public void switchStatusTask(String taskId, boolean isActive) throws SQLException {
         statement.execute("UPDATE task_manager_db.task_table SET isActive =" + isActive + " WHERE id =" + taskId);
-        connection.close();
     }
 
     public Task getTaskById(String taskId) throws SQLException {
@@ -77,7 +69,6 @@ public class TaskDAO {
                 rs.getString("details"), rs.getBoolean("isActive"));
         task.setDueDate(rs.getString("due_date"));
         task.setMessages(getTaskMessages(taskId));
-        connection.close();
         return task;
     }
 
@@ -89,19 +80,16 @@ public class TaskDAO {
             messages.add(new Message(resultSet.getInt("id"), resultSet.getInt("taskId"),
                     resultSet.getString("message_body")));
         }
-        resultSet.close();
         return messages;
     }
 
     public void addNewMessage(String taskId, String message) throws SQLException {
         statement.execute("INSERT INTO task_manager_db.messages (taskId, message_body) VALUES " +
                 "('" + taskId + "','" + message + "')");
-        connection.close();
     }
 
     public void deleteMessage(String messageId) throws SQLException {
         statement.execute("DELETE FROM task_manager_db.messages WHERE id =" + messageId);
-        connection.close();
     }
 
 }

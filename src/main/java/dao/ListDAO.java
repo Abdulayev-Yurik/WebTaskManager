@@ -14,15 +14,12 @@ import java.util.List;
  */
 public class ListDAO {
 
-    private String dbUrl = "jdbc:mysql://localhost:3306/task_manager_db";
-    private String user = "root";
-    private String pass = "root";
     private Connection connection;
     private Statement statement;
     private ResultSet rs;
 
-    public ListDAO() throws SQLException, ClassNotFoundException {
-        connection = new DBConnectionManager(dbUrl, user, pass).getConnection();
+    public ListDAO(Connection connection) throws SQLException, ClassNotFoundException {
+        this.connection = connection;
         statement = connection.createStatement();
     }
 
@@ -33,12 +30,10 @@ public class ListDAO {
             ListTasks tasks = new ListTasks(rs.getInt("id"), rs.getString("name"));
             list.add(tasks);
         }
-        connection.close();
         return list;
     }
 
     public void createNewList(String title) throws SQLException {
         statement.execute("INSERT INTO task_manager_db.list_tasks (name) VALUE ('"+ title +"');");
-        connection.close();
     }
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -20,7 +21,7 @@ public class DeleteTaskServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            TaskDAO taskDAO = new TaskDAO();
+            TaskDAO taskDAO = new TaskDAO((Connection) getServletContext().getAttribute("connection"));
             taskDAO.deleteTask(req.getParameter("task"));
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

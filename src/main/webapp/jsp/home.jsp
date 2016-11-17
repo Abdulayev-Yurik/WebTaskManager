@@ -18,7 +18,7 @@
         </select>
         <input type="submit" value="view list">
     </form>
-    <input type="submit" value="Add Task" onclick="window.location='/newTask'"><br>
+    <input type="submit" value="Add Task" onclick="window.location='/newTask'">
     <input type="submit" value="Add List" onclick="window.location='jsp/add_new_list.jsp'"><br>
     <c:if test="${taskActiveList.size() != 0}">
         <div class="activeList card-1">
