@@ -11,7 +11,9 @@ import java.util.List;
 @Table(name = "task_table")
 public class Task {
 
-    @Column(name = "id")@Id
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String taskId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,10 +30,10 @@ public class Task {
     private String dueDate;
 
     @Column(name = "isActive")
-    private boolean isActive;
+    private Boolean isActive;
 
     @Column(name = "listId", insertable = false, updatable = false)
-    private int listId;
+    private Integer listId;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
     private List<Message> messages = new ArrayList<>();

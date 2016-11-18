@@ -11,6 +11,7 @@ public class Message {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "taskId", updatable = false, insertable = false)
@@ -22,6 +23,11 @@ public class Message {
     @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn(name = "taskId")
     private Task task;
+
+    public Message(Integer taskId, String messageBody) {
+        this.taskId = taskId;
+        this.messageBody = messageBody;
+    }
 
     public Message(int id, int taskId, String messageBody) {
         this.id = id;

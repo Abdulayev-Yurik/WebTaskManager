@@ -13,6 +13,7 @@ public class ListTasks {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "name")
@@ -23,6 +24,10 @@ public class ListTasks {
 
     public ListTasks(int id, String listName) {
         this.id = id;
+        this.listName = listName;
+    }
+
+    public ListTasks(String listName) {
         this.listName = listName;
     }
 
