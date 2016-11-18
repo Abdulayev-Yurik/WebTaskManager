@@ -13,12 +13,27 @@ public class Task {
 
     @Column(name = "id")@Id
     private String taskId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "listId")
     private ListTasks listTasks;
+
+    @Column(name = "title")
     private String taskTitle;
+
+    @Column(name = "details")
     private String details;
+
+    @Column(name = "due_date")
     private String dueDate;
+
+    @Column(name = "isActive")
     private boolean isActive;
+
+    @Column(name = "listId", insertable = false, updatable = false)
     private int listId;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
     private List<Message> messages = new ArrayList<>();
 
 
@@ -113,8 +128,6 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "listId", nullable = false)
     public ListTasks getListTasks() {
         return listTasks;
     }

@@ -1,8 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by yurik on 16.11.16.
@@ -12,9 +12,14 @@ import java.util.Set;
 public class ListTasks {
 
     @Id
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String listName;
-    private List<Task> tasks;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "listTasks")
+    private List<Task> tasks = new ArrayList<>();
 
     public ListTasks(int id, String listName) {
         this.id = id;
@@ -40,8 +45,6 @@ public class ListTasks {
         this.listName = listName;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "listTasks")
-    @JoinColumn(name = "listId", referencedColumnName = "id")
     public List<Task> getTasks() {
         return tasks;
     }
